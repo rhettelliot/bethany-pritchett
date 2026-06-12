@@ -3,30 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --void: #080604;
-  --void-raised: #0F0C09;
-  --void-elevated: #181410;
-  --void-warm: #1E1A14;
+  --void: #020203;
+  --void-raised: #050506;
+  --void-elevated: #0A0A0B;
+  --void-warm: #0F0F11;
 
-  --rose: #C4788A;
-  --rose-dim: #9A5C6D;
-  --rose-glow: #C4788A26;
-  --rose-pale: #E8B0BC;
+  --electric: #007AFF;
+  --electric-dim: #005BBD;
+  --electric-glow: #007AFF26;
+  --electric-pale: #4DAAFF;
 
-  --parchment: #D4C5A9;
-  --parchment-dim: #A89B82;
-  --parchment-muted: #7A6F5E;
-
-  --ink: #2A3042;
+  --gold: #FF6B35;
+  --gold-dim: #B34D27;
+  --gold-muted: #7A3A1F;
 
   --light: #E8DDD0;
   --light-dim: #B0A597;
   --light-muted: #6E6358;
 
-  --edge-faint: rgba(196,120,138,0.06);
-  --edge-subtle: rgba(196,120,138,0.12);
-  --edge-medium: rgba(196,120,138,0.2);
-  --edge-bright: rgba(196,120,138,0.4);
+  --edge-faint: rgba(0,122,255,0.06);
+  --edge-subtle: rgba(0,122,255,0.12);
+  --edge-medium: rgba(0,122,255,0.2);
+  --edge-bright: rgba(0,122,255,0.4);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,14 +42,14 @@ body {
 }
 
 ::selection {
-  background: var(--rose);
+  background: var(--electric);
   color: var(--void);
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--void); }
 ::-webkit-scrollbar-thumb { background: var(--edge-subtle); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--rose-dim); }
+::-webkit-scrollbar-thumb:hover { background: var(--electric-dim); }
 
 /* Noise — warm, like paper grain */
 .noise-overlay {
@@ -69,17 +67,17 @@ body {
   @apply font-mono text-[10px] tracking-[0.3em] uppercase text-light-muted;
 }
 
-/* Divider — ink line */
+/* Divider — void gradient */
 .divider-ink {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(196,120,138,0.4) 20%, rgba(212,197,169,0.3) 50%, rgba(196,120,138,0.4) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--electric) 20%, var(--gold) 50%, var(--electric) 80%, transparent 100%);
 }
 
-/* Rose thread */
+/* Electric thread */
 .rose-thread {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--rose), transparent);
-  box-shadow: 0 0 6px rgba(196,120,138,0.2);
+  background: linear-gradient(90deg, transparent, var(--electric), transparent);
+  box-shadow: 0 0 6px var(--electric-glow);
 }
 
 /* Button — soft press */
@@ -107,5 +105,8 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .opacity-0 {
+    opacity: 1 !important;
   }
 }

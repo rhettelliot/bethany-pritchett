@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
 import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
 
@@ -30,7 +30,19 @@ export const metadata: Metadata = {
     title: 'Bethany Pritchett',
     description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
     type: 'website',
+    images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Bethany Pritchett — Good Morning Good Fortune Elephant' }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bethany Pritchett',
+    description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
+    images: ['/og.jpg'],
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#020203',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({

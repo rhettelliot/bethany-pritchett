@@ -11,40 +11,32 @@ const config: Config = {
       colors: {
         // Bethany Pritchett — intimate, poetic, handwritten light
         void: {
-          DEFAULT: '#080604',
-          raised: '#0F0C09',
-          elevated: '#181410',
-          warm: '#1E1A14',
+          DEFAULT: '#020203',
+          raised: '#050506',
+          elevated: '#0A0A0B',
+          warm: '#0F0F11',
         },
-        // Rose Blush — warmth, skin, vulnerability
-        rose: {
-          DEFAULT: '#C4788A',
-          dim: '#9A5C6D',
-          glow: '#C4788A26',
-          pale: '#E8B0BC',
+        electric: {
+          DEFAULT: '#007AFF',
+          dim: '#005BBD',
+          glow: '#007AFF26',
+          pale: '#4DAAFF',
         },
-        // Parchment — old paper, ink, poetry
-        parchment: {
-          DEFAULT: '#D4C5A9',
-          dim: '#A89B82',
-          muted: '#7A6F5E',
+        gold: {
+          DEFAULT: '#FF6B35',
+          dim: '#B34D27',
+          muted: '#7A3A1F',
         },
-        // Ink — deep literary blackened blue
-        ink: {
-          DEFAULT: '#2A3042',
-          deep: '#1A1E2A',
-        },
-        // Warm light
         light: {
           DEFAULT: '#E8DDD0',
           dim: '#B0A597',
           muted: '#6E6358',
         },
         edge: {
-          faint: 'rgba(196,120,138,0.06)',
-          subtle: 'rgba(196,120,138,0.12)',
-          medium: 'rgba(196,120,138,0.2)',
-          bright: 'rgba(196,120,138,0.4)',
+          faint: 'rgba(0,122,255,0.06)',
+          subtle: 'rgba(0,122,255,0.12)',
+          medium: 'rgba(0,122,255,0.2)',
+          bright: 'rgba(0,122,255,0.4)',
         },
       },
       fontFamily: {
