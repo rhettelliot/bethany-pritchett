@@ -53,6 +53,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${playfair.variable}`}>
       <body className="bg-void text-light antialiased">
+        <noscript>
+          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080604', color: '#C4788A', fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', textAlign: 'center', padding: 24 }}>
+            Bethany Pritchett is an interactive experience — enable JavaScript to enter.
+          </div>
+        </noscript>
         <div className="noise-overlay" />
         <div className="warm-vignette fixed top-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to bottom, rgba(8,6,4,0.7) 0%, transparent 100%)' }} />
         <div className="warm-vignette fixed bottom-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to top, rgba(8,6,4,0.7) 0%, transparent 100%)' }} />

@@ -17,15 +17,15 @@ const config: Config = {
           warm: '#0F0F11',
         },
         electric: {
-          DEFAULT: '#007AFF',
-          dim: '#005BBD',
-          glow: '#007AFF26',
-          pale: '#4DAAFF',
+          DEFAULT: '#C4788A',
+          dim: '#9A5C6D',
+          glow: '#C4788A26',
+          pale: '#E8B0BC',
         },
         gold: {
-          DEFAULT: '#FF6B35',
-          dim: '#B34D27',
-          muted: '#7A3A1F',
+          DEFAULT: '#D4C5A9',
+          dim: '#A89878',
+          muted: '#7A6F5E',
         },
         light: {
           DEFAULT: '#E8DDD0',

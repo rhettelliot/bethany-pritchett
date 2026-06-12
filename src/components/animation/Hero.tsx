@@ -74,7 +74,7 @@ export function Hero() {
       />
 
       {/* Title */}
-      <div ref={titleRef} className="relative z-10 text-center px-6" style={{ opacity: 0 }}>
+      <div ref={titleRef} className="relative z-10 text-center px-6 opacity-0">
         <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-medium italic tracking-[-0.01em] leading-[0.86]" style={{ color: '#E8B0BC' }}>
           Bethany
         </h1>

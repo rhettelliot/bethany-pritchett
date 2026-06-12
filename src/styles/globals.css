@@ -8,23 +8,24 @@
   --void-elevated: #0A0A0B;
   --void-warm: #0F0F11;
 
-  --electric: #007AFF;
-  --electric-dim: #005BBD;
-  --electric-glow: #007AFF26;
-  --electric-pale: #4DAAFF;
+  /* Signal — rose, matching the site's pink/cream palette */
+  --electric: #C4788A;
+  --electric-dim: #9A5C6D;
+  --electric-glow: #C4788A26;
+  --electric-pale: #E8B0BC;
 
-  --gold: #FF6B35;
-  --gold-dim: #B34D27;
-  --gold-muted: #7A3A1F;
+  --gold: #D4C5A9;
+  --gold-dim: #A89878;
+  --gold-muted: #7A6F5E;
 
   --light: #E8DDD0;
   --light-dim: #B0A597;
   --light-muted: #6E6358;
 
-  --edge-faint: rgba(0,122,255,0.06);
-  --edge-subtle: rgba(0,122,255,0.12);
-  --edge-medium: rgba(0,122,255,0.2);
-  --edge-bright: rgba(0,122,255,0.4);
+  --edge-faint: rgba(196,120,138,0.06);
+  --edge-subtle: rgba(196,120,138,0.12);
+  --edge-medium: rgba(196,120,138,0.2);
+  --edge-bright: rgba(196,120,138,0.4);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -109,4 +110,14 @@ body {
   .opacity-0 {
     opacity: 1 !important;
   }
+}
+/* Keyboard navigation — accent outline, only for keyboard focus */
+:focus-visible {
+  outline: 1px solid #C4788A;
+  outline-offset: 3px;
+}
+
+/* Anchored sections land below the fixed nav */
+section[id] {
+  scroll-margin-top: 88px;
 }

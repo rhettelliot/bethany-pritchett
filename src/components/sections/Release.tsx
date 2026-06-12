@@ -1,43 +1,21 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
-
-gsap.registerPlugin(ScrollTrigger)
+import { revealOnEnter } from '@/lib/reveal'
 
 export function Release() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from('.release-cover', {
-        opacity: 0,
-        scale: 1.04,
-        duration: 1.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.release-cover',
-          start: 'top 85%',
-          once: true,
-        },
-      })
-
-      gsap.from('.release-info', {
-        x: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.release-info',
-          start: 'top 85%',
-          once: true,
-        },
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
+    const root = sectionRef.current
+    if (!root) return
+    const disposers: Array<() => void> = []
+    ;(async () => {
+      disposers.push(await revealOnEnter(root.querySelectorAll('.release-cover'), { y: 0, scale: 1.04, duration: 1.2 }))
+      disposers.push(await revealOnEnter(root.querySelectorAll('.release-info'), { y: 0, x: 30, duration: 0.8 }))
+    })()
+    return () => disposers.forEach((d) => d())
   }, [])
 
   return (

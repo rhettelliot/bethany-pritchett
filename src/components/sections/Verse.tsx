@@ -1,10 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { revealOnEnter } from '@/lib/reveal'
 
 const verses = [
   'Voice is the first instrument.',
@@ -20,24 +17,13 @@ export function Verse() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.verse-line').forEach((line, i) => {
-        gsap.from(line, {
-          y: 25,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: line,
-            start: 'top 88%',
-            once: true,
-          },
-          delay: i * 0.04,
-        })
-      })
-    }, sectionRef)
-
-    return () => ctx.revert()
+    const root = sectionRef.current
+    if (!root) return
+    const disposers: Array<() => void> = []
+    ;(async () => {
+      disposers.push(await revealOnEnter(root.querySelectorAll('.verse-line'), { y: 25, duration: 0.7, stagger: 0.04 }))
+    })()
+    return () => disposers.forEach((d) => d())
   }, [])
 
   return (
