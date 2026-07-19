@@ -3,32 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --void: #020203;
-  --void-raised: #050506;
-  --void-elevated: #0A0A0B;
-  --void-warm: #0F0F11;
+  /* The Void */
+  --void: #000000;
+  --void-raised: #0C0C0C;
+  --void-elevated: #141414;
+  --void-float: #1C1C1C;
 
-  /* Signal — rose, matching the site's pink/cream palette */
-  --electric: #C4788A;
-  --electric-dim: #9A5C6D;
-  --electric-glow: #C4788A26;
-  --electric-pale: #E8B0BC;
+  /* The Signal — dusty rose. Intimate, personal. Used sparingly. */
+  --signal: #C4788A;
+  --signal-dim: rgba(196, 120, 138, 0.12);
+  --signal-border: rgba(196, 120, 138, 0.4);
 
-  --gold: #D4C5A9;
-  --gold-dim: #A89878;
-  --gold-muted: #7A6F5E;
+  /* Typography */
+  --text-primary: #FFFFFF;
+  --text-secondary: #888888;
+  --text-tertiary: #555555;
+  --text-ghost: rgba(255, 255, 255, 0.18);
 
-  --light: #E8DDD0;
-  --light-dim: #B0A597;
-  --light-muted: #6E6358;
-
-  --edge-faint: rgba(196,120,138,0.06);
-  --edge-subtle: rgba(196,120,138,0.12);
-  --edge-medium: rgba(196,120,138,0.2);
-  --edge-bright: rgba(196,120,138,0.4);
+  /* The Edge */
+  --edge-ghost: rgba(255, 255, 255, 0.04);
+  --edge-faint: rgba(255, 255, 255, 0.08);
+  --edge-subtle: rgba(255, 255, 255, 0.12);
+  --edge-clear: rgba(255, 255, 255, 0.22);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
 
 html {
   background: var(--void);
@@ -38,67 +42,62 @@ html {
 
 body {
   background: var(--void);
-  color: var(--light);
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--electric);
+  background: var(--signal);
   color: var(--void);
 }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--void); }
-::-webkit-scrollbar-thumb { background: var(--edge-subtle); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--electric-dim); }
+::-webkit-scrollbar-thumb { background: var(--edge-subtle); }
+::-webkit-scrollbar-thumb:hover { background: var(--signal); }
 
-/* Noise — warm, like paper grain */
-.noise-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-}
-
-/* Section label */
+/* Silkscreen section label */
 .section-label {
-  @apply font-mono text-[10px] tracking-[0.3em] uppercase text-light-muted;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
 }
 
-/* Divider — void gradient */
-.divider-ink {
+/* Hairline divider */
+.hairline {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--electric) 20%, var(--gold) 50%, var(--electric) 80%, transparent 100%);
+  background: var(--edge-faint);
 }
 
-/* Electric thread */
-.rose-thread {
+/* Signal thread — a short solid rose rule */
+.thread-signal {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--electric), transparent);
-  box-shadow: 0 0 6px var(--electric-glow);
+  background: var(--signal-border);
 }
 
-/* Button — soft press */
-.btn-soft {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-              border-color 0.3s ease,
-              color 0.3s ease,
-              background-color 0.3s ease,
-              box-shadow 0.3s ease;
+/* Signal button — sharp, quiet, fills on hover */
+.btn-signal {
+  border: 1px solid var(--signal-border);
+  color: var(--signal);
+  background: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.btn-soft:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 16px rgba(196,120,138,0.15);
+.btn-signal:hover {
+  background: var(--signal);
+  border-color: var(--signal);
+  color: var(--void);
 }
 
-/* Warm vignettes */
-.warm-vignette {
-  position: fixed;
-  pointer-events: none;
-  z-index: 30;
+/* Quiet link — tertiary at rest, signal on hover */
+.link-quiet {
+  color: var(--text-tertiary);
+  transition: color 0.15s ease;
+}
+.link-quiet:hover {
+  color: var(--signal);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -111,9 +110,10 @@ body {
     opacity: 1 !important;
   }
 }
-/* Keyboard navigation — accent outline, only for keyboard focus */
+
+/* Keyboard navigation — signal outline, only for keyboard focus */
 :focus-visible {
-  outline: 1px solid #C4788A;
+  outline: 1px solid var(--signal);
   outline-offset: 3px;
 }
 

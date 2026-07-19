@@ -9,38 +9,32 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Bethany Pritchett — intimate, poetic, handwritten light
         void: {
-          DEFAULT: '#020203',
-          raised: '#050506',
-          elevated: '#0A0A0B',
-          warm: '#0F0F11',
+          DEFAULT: '#000000',
+          raised: '#0C0C0C',
+          elevated: '#141414',
+          float: '#1C1C1C',
         },
-        electric: {
+        signal: {
           DEFAULT: '#C4788A',
-          dim: '#9A5C6D',
-          glow: '#C4788A26',
-          pale: '#E8B0BC',
+          dim: 'rgba(196,120,138,0.12)',
+          border: 'rgba(196,120,138,0.40)',
         },
-        gold: {
-          DEFAULT: '#D4C5A9',
-          dim: '#A89878',
-          muted: '#7A6F5E',
-        },
-        light: {
-          DEFAULT: '#E8DDD0',
-          dim: '#B0A597',
-          muted: '#6E6358',
+        ink: {
+          DEFAULT: '#FFFFFF',
+          secondary: '#888888',
+          tertiary: '#555555',
+          ghost: 'rgba(255,255,255,0.18)',
         },
         edge: {
-          faint: 'rgba(196,120,138,0.06)',
-          subtle: 'rgba(196,120,138,0.12)',
-          medium: 'rgba(196,120,138,0.2)',
-          bright: 'rgba(196,120,138,0.4)',
+          ghost: 'rgba(255,255,255,0.04)',
+          faint: 'rgba(255,255,255,0.08)',
+          subtle: 'rgba(255,255,255,0.12)',
+          clear: 'rgba(255,255,255,0.22)',
         },
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Georgia', 'serif'],
+        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       },
@@ -53,25 +47,10 @@ const config: Config = {
           from: { opacity: '0', transform: 'translateY(20px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
-        'breathe-soft': {
-          '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
-          '50%': { opacity: '0.8', transform: 'scale(1.01)' },
-        },
-        'ink-spread': {
-          from: { opacity: '0', filter: 'blur(6px)', transform: 'scale(0.97)' },
-          to: { opacity: '1', filter: 'blur(0)', transform: 'scale(1)' },
-        },
-        'quill-draw': {
-          from: { strokeDashoffset: '100%' },
-          to: { strokeDashoffset: '0%' },
-        },
       },
       animation: {
         'fade-in': 'fade-in 1s ease-out forwards',
         'slide-up': 'slide-up 0.7s ease-out forwards',
-        'breathe-soft': 'breathe-soft 10s ease-in-out infinite',
-        'ink-spread': 'ink-spread 1s ease-out forwards',
-        'quill-draw': 'quill-draw 2s ease-in-out forwards',
       },
     },
   },

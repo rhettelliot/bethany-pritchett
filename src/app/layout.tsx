@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
-import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { ALBUM } from '@/lib/album'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -14,18 +15,28 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['300', '400', '500', '700'],
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Bethany Pritchett — Good Morning Good Fortune Elephant | Vocalist / Synthesist / Poet',
-  description: 'Vocalist. Synthesist. Poet. Good Morning Good Fortune Elephant — a breathtaking dive into intimacy. Manteis Recordings.',
-  keywords: ['Bethany Pritchett', 'Good Morning Good Fortune Elephant', 'vocalist', 'synthesist', 'poet', 'alternative', 'art song', 'Manteis Recordings', 'Seattle'],
+  title: 'Bethany Pritchett — Good Morning, Good Fortune Elephant | Vocalist / Synthesist / Poet',
+  description:
+    'Vocalist. Synthesist. Poet. Good Morning, Good Fortune Elephant — five songs of intimate poetry, out 2025 on Manteis Recordings.',
+  keywords: [
+    'Bethany Pritchett',
+    'Good Morning Good Fortune Elephant',
+    'vocalist',
+    'synthesist',
+    'poet',
+    'alternative',
+    'art song',
+    'Manteis Recordings',
+    'Seattle',
+  ],
   authors: [{ name: 'Bethany Pritchett' }],
   creator: 'Bethany Pritchett',
   publisher: 'Manteis Recordings',
@@ -34,17 +45,17 @@ export const metadata: Metadata = {
     canonical: 'https://bethanypritchett.com',
   },
   openGraph: {
-    title: 'Bethany Pritchett — Good Morning Good Fortune Elephant',
-    description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
+    title: 'Bethany Pritchett — Good Morning, Good Fortune Elephant',
+    description: 'Vocalist / Synthesist / Poet — five songs of intimate poetry. Manteis Recordings, 2025.',
     type: 'website',
     url: 'https://bethanypritchett.com',
     siteName: 'Bethany Pritchett',
     locale: 'en_US',
-    images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Bethany Pritchett — Good Morning Good Fortune Elephant' }],
+    images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Bethany Pritchett — Good Morning, Good Fortune Elephant' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bethany Pritchett — Good Morning Good Fortune Elephant',
+    title: 'Bethany Pritchett — Good Morning, Good Fortune Elephant',
     description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
     images: ['/og.jpg'],
   },
@@ -54,25 +65,44 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'MusicAlbum',
-  name: 'Good Morning Good Fortune Elephant',
+  name: ALBUM.title,
   byArtist: {
     '@type': 'MusicGroup',
-    name: 'Bethany Pritchett',
+    name: ALBUM.artist,
   },
   recordLabel: {
     '@type': 'Organization',
-    name: 'Manteis Recordings',
+    name: ALBUM.label,
+    url: ALBUM.labelUrl,
   },
-  catalogNumber: 'MR-003',
-  datePublished: '2024',
+  catalogNumber: ALBUM.catalog,
+  datePublished: ALBUM.year,
+  numTracks: ALBUM.tracks.length,
+  albumProductionType: 'https://schema.org/StudioAlbum',
+  albumReleaseType: 'https://schema.org/AlbumRelease',
   genre: ['Alternative', 'Vocal', 'Synthesist', 'Poetic'],
   url: 'https://bethanypritchett.com',
   image: 'https://bethanypritchett.com/og.jpg',
-  description: 'A breathtaking dive into intimacy. Voice and synthesizer woven into poetic architecture — songs that feel like letters you weren\u2019t supposed to read. Alternative songwriting at its most vulnerable and vivid.',
+  description:
+    'Five songs of intimate poetry. Voice and synthesizer woven into poetic architecture — songs that feel like letters you were not supposed to read.',
+  track: {
+    '@type': 'ItemList',
+    numberOfItems: ALBUM.tracks.length,
+    itemListElement: ALBUM.tracks.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'MusicRecording',
+        name: t.title,
+        duration: t.iso,
+        byArtist: { '@type': 'MusicGroup', name: ALBUM.artist },
+      },
+    })),
+  },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#020203',
+  themeColor: '#000000',
   colorScheme: 'dark',
 }
 
@@ -82,21 +112,31 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${playfair.variable}`}>
-      <body className="bg-void text-light antialiased">
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable}`}>
+      <body className="bg-void text-ink antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <noscript>
-          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080604', color: '#C4788A', fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', textAlign: 'center', padding: 24 }}>
+          <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000000', color: '#C4788A', fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', textAlign: 'center', padding: 24 }}>
             Bethany Pritchett is an interactive experience — enable JavaScript to enter.
           </div>
         </noscript>
-        <div className="noise-overlay" />
-        <div className="warm-vignette fixed top-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to bottom, rgba(8,6,4,0.7) 0%, transparent 100%)' }} />
-        <div className="warm-vignette fixed bottom-0 left-0 right-0 h-40" style={{ background: 'linear-gradient(to top, rgba(8,6,4,0.7) 0%, transparent 100%)' }} />
         {children}
+        {/* Safety net: if a scroll-reveal never fires, force content visible */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  (function() {
+    setTimeout(function() {
+      var els = document.querySelectorAll('main [style*="opacity: 0"], main [style*="opacity:0"]');
+      els.forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'none'; });
+    }, 4000);
+  })();
+`,
+          }}
+        />
       </body>
     </html>
   )
