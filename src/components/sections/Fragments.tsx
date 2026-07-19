@@ -39,7 +39,7 @@ export function Fragments() {
                 {f.label}
               </div>
               <div
-                className="font-mono text-[9px] tracking-[0.25em] uppercase mt-2 opacity-70"
+                className="font-mono text-[9px] tracking-[0.25em] uppercase mt-2"
                 style={{ color: f.color }}
               >
                 {f.unit}
