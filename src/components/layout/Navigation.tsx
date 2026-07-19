@@ -48,6 +48,8 @@ export function Navigation() {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileOpen}
           className="md:hidden font-mono text-[10px] tracking-[0.2em] uppercase"
           style={{ color: '#9A5C6D' }}
         >

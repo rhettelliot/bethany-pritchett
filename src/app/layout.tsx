@@ -23,21 +23,52 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Bethany Pritchett',
-  description: 'Vocalist. Synthesist. Poet. Good Morning Good Fortune Elephant. Manteis Recordings.',
+  title: 'Bethany Pritchett — Good Morning Good Fortune Elephant | Vocalist / Synthesist / Poet',
+  description: 'Vocalist. Synthesist. Poet. Good Morning Good Fortune Elephant — a breathtaking dive into intimacy. Manteis Recordings.',
+  keywords: ['Bethany Pritchett', 'Good Morning Good Fortune Elephant', 'vocalist', 'synthesist', 'poet', 'alternative', 'art song', 'Manteis Recordings', 'Seattle'],
+  authors: [{ name: 'Bethany Pritchett' }],
+  creator: 'Bethany Pritchett',
+  publisher: 'Manteis Recordings',
   metadataBase: new URL('https://bethanypritchett.com'),
+  alternates: {
+    canonical: 'https://bethanypritchett.com',
+  },
   openGraph: {
-    title: 'Bethany Pritchett',
+    title: 'Bethany Pritchett — Good Morning Good Fortune Elephant',
     description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
     type: 'website',
+    url: 'https://bethanypritchett.com',
+    siteName: 'Bethany Pritchett',
+    locale: 'en_US',
     images: [{ url: '/og.jpg', width: 1200, height: 1200, alt: 'Bethany Pritchett — Good Morning Good Fortune Elephant' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bethany Pritchett',
+    title: 'Bethany Pritchett — Good Morning Good Fortune Elephant',
     description: 'Vocalist / Synthesist / Poet — Manteis Recordings',
     images: ['/og.jpg'],
   },
+  robots: { index: true, follow: true },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicAlbum',
+  name: 'Good Morning Good Fortune Elephant',
+  byArtist: {
+    '@type': 'MusicGroup',
+    name: 'Bethany Pritchett',
+  },
+  recordLabel: {
+    '@type': 'Organization',
+    name: 'Manteis Recordings',
+  },
+  catalogNumber: 'MR-003',
+  datePublished: '2024',
+  genre: ['Alternative', 'Vocal', 'Synthesist', 'Poetic'],
+  url: 'https://bethanypritchett.com',
+  image: 'https://bethanypritchett.com/og.jpg',
+  description: 'A breathtaking dive into intimacy. Voice and synthesizer woven into poetic architecture — songs that feel like letters you weren\u2019t supposed to read. Alternative songwriting at its most vulnerable and vivid.',
 }
 
 export const viewport: Viewport = {
@@ -53,6 +84,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${playfair.variable}`}>
       <body className="bg-void text-light antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <noscript>
           <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080604', color: '#C4788A', fontFamily: 'monospace', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', textAlign: 'center', padding: 24 }}>
             Bethany Pritchett is an interactive experience — enable JavaScript to enter.

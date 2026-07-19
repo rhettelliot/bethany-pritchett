@@ -33,10 +33,10 @@ const config: Config = {
           muted: '#6E6358',
         },
         edge: {
-          faint: 'rgba(0,122,255,0.06)',
-          subtle: 'rgba(0,122,255,0.12)',
-          medium: 'rgba(0,122,255,0.2)',
-          bright: 'rgba(0,122,255,0.4)',
+          faint: 'rgba(196,120,138,0.06)',
+          subtle: 'rgba(196,120,138,0.12)',
+          medium: 'rgba(196,120,138,0.2)',
+          bright: 'rgba(196,120,138,0.4)',
         },
       },
       fontFamily: {
