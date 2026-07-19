@@ -95,9 +95,9 @@ export function Release() {
                 target="_blank"
                 rel="noreferrer noopener"
                 className="font-mono text-[10px] tracking-[0.1em] uppercase transition-colors duration-300"
-                style={{ color: '#9A5C6D' }}
+                style={{ color: '#B88A9A' }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = '#C4788A' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#9A5C6D' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#B88A9A' }}
               >
                 Spotify →
               </a>
@@ -109,7 +109,7 @@ export function Release() {
                 <span
                   key={tag}
                   className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1"
-                  style={{ border: '1px solid rgba(196,120,138,0.12)', color: '#9A5C6D' }}
+                  style={{ border: '1px solid rgba(196,120,138,0.12)', color: '#B88A9A' }}
                 >
                   {tag}
                 </span>

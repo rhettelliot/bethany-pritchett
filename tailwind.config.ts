@@ -23,7 +23,7 @@ const config: Config = {
         ink: {
           DEFAULT: '#FFFFFF',
           secondary: '#888888',
-          tertiary: '#555555',
+          tertiary: '#767676',
           ghost: 'rgba(255,255,255,0.18)',
         },
         edge: {

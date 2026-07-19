@@ -19,6 +19,18 @@ export function Gatekeeper() {
   useEffect(() => {
     if (entered) return
 
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleEnter()
+      }
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [entered])
+
+  useEffect(() => {
+    if (entered) return
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 })
 
@@ -77,6 +89,9 @@ export function Gatekeeper() {
     <div
       ref={containerRef}
       data-gate=""
+      role="dialog"
+      aria-modal="true"
+      aria-label="Welcome to Bethany Pritchett"
       className="fixed inset-0 z-50 bg-[#080604] flex flex-col items-center justify-center"
     >
       {/* Warm ambient glow */}
@@ -99,18 +114,18 @@ export function Gatekeeper() {
       {/* Content */}
       <div className="relative z-10 text-center px-6">
         <div ref={titleRef} className="opacity-0">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] font-medium italic tracking-[-0.01em] leading-[0.88]" style={{ color: '#E8B0BC' }}>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] font-medium italic tracking-[-0.01em] leading-[0.88]" style={{ color: '#E8B0BC' }}>
             Bethany
-          </h1>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] font-normal tracking-[-0.01em] leading-[0.88]" style={{ color: '#D4C5A9' }}>
+          </h2>
+          <h2 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] font-normal tracking-[-0.01em] leading-[0.88]" style={{ color: '#D4C5A9' }}>
             Pritchett
-          </h1>
+          </h2>
         </div>
 
         <p
           ref={subtitleRef}
           className="opacity-0 font-mono text-[9px] tracking-[0.4em] uppercase mt-5"
-          style={{ color: '#9A5C6D' }}
+          style={{ color: '#B88A9A' }}
         >
           Vocalist · Synthesist · Poet
         </p>
@@ -118,7 +133,8 @@ export function Gatekeeper() {
         <button
           ref={btnRef}
           onClick={handleEnter}
-          className="opacity-0 mt-10 font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-3 border btn-soft"
+          autoFocus
+          className="mt-10 font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-3 border btn-soft"
           style={{ borderColor: 'rgba(196,120,138,0.3)', color: '#C4788A' }}
           onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#080604' }}
           onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4788A' }}
@@ -128,16 +144,16 @@ export function Gatekeeper() {
       </div>
 
       {/* Corner annotations — like margins of a handwritten letter */}
-      <div className="absolute top-6 left-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#7A6F5E' }}>
+      <div className="absolute top-6 left-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#8B7D70' }}>
         MR-003
       </div>
-      <div className="absolute top-6 right-6 font-display text-lg italic" style={{ color: 'rgba(196,120,138,0.3)' }}>
+      <div className="absolute top-6 right-6 font-display text-lg italic" style={{ color: 'rgba(196,120,138,0.3)' }} aria-hidden="true">
         ♪
       </div>
-      <div className="absolute bottom-6 left-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#7A6F5E' }}>
+      <div className="absolute bottom-6 left-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#8B7D70' }}>
         good morning
       </div>
-      <div className="absolute bottom-6 right-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#9A5C6D' }}>
+      <div className="absolute bottom-6 right-6 font-mono text-[9px] tracking-[0.15em]" style={{ color: '#B88A9A' }}>
         Seattle, 2024
       </div>
     </div>

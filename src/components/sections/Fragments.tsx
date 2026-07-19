@@ -44,7 +44,7 @@ export function Fragments() {
               >
                 {f.unit}
               </div>
-              <div className="font-mono text-[8px] tracking-[0.15em] uppercase mt-1" style={{ color: '#7A6F5E' }}>
+              <div className="font-mono text-[8px] tracking-[0.15em] uppercase mt-1" style={{ color: '#8B7D70' }}>
                 {f.desc}
               </div>
             </div>

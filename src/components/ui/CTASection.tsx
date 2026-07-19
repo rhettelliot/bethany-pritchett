@@ -28,7 +28,7 @@ export function CTASection() {
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium italic tracking-[-0.02em] leading-[1.05]" style={{ color: '#E8B0BC' }}>
             Bring your voice to the room.
           </h2>
-          <p className="font-mono text-[10px] tracking-[0.2em] uppercase mt-4" style={{ color: '#9A5C6D' }}>
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase mt-4" style={{ color: '#B88A9A' }}>
             Manteis Recordings — accepting demos from artists with something to say
           </p>
 

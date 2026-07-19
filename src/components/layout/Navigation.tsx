@@ -15,7 +15,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
         <a href="#" className="font-display text-lg font-medium italic tracking-[-0.02em]" style={{ color: '#E8B0BC' }}>
           BP
-          <span className="font-mono text-[8px] tracking-[0.15em] ml-2 not-italic" style={{ color: '#7A6F5E' }}>
+          <span className="font-mono text-[8px] tracking-[0.15em] ml-2 not-italic" style={{ color: '#8B7D70' }}>
             MR-003
           </span>
         </a>
@@ -26,9 +26,9 @@ export function Navigation() {
               key={link.href}
               href={link.href}
               className="font-mono text-[10px] tracking-[0.2em] uppercase transition-colors duration-300"
-              style={{ color: '#9A5C6D' }}
+              style={{ color: '#B88A9A' }}
               onMouseEnter={(e) => { e.currentTarget.style.color = '#C4788A' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#9A5C6D' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#B88A9A' }}
             >
               {link.label}
             </a>
@@ -51,7 +51,7 @@ export function Navigation() {
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileOpen}
           className="md:hidden font-mono text-[10px] tracking-[0.2em] uppercase"
-          style={{ color: '#9A5C6D' }}
+          style={{ color: '#B88A9A' }}
         >
           {mobileOpen ? 'Close' : 'Menu'}
         </button>
@@ -65,7 +65,7 @@ export function Navigation() {
               href={link.href}
               onClick={() => setMobileOpen(false)}
               className="block font-mono text-[11px] tracking-[0.15em] uppercase transition-colors duration-300"
-              style={{ color: '#9A5C6D' }}
+              style={{ color: '#B88A9A' }}
             >
               {link.label}
             </a>

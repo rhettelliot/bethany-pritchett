@@ -78,14 +78,14 @@ export function Hero() {
         <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-medium italic tracking-[-0.01em] leading-[0.86]" style={{ color: '#E8B0BC' }}>
           Bethany
         </h1>
-        <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-normal tracking-[-0.01em] leading-[0.86]" style={{ color: '#D4C5A9' }}>
+        <h2 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-normal tracking-[-0.01em] leading-[0.86]" style={{ color: '#D4C5A9' }}>
           Pritchett
-        </h1>
+        </h2>
       </div>
 
       {/* Subtitle */}
       <div ref={subRef} className="relative z-10 mt-5 text-center opacity-0">
-        <p className="font-mono text-[9px] tracking-[0.4em] uppercase" style={{ color: '#9A5C6D' }}>
+        <p className="font-mono text-[9px] tracking-[0.4em] uppercase" style={{ color: '#B88A9A' }}>
           Vocalist · Synthesist · Poet · MR-003
         </p>
         <div className="mt-4 rose-thread w-16 mx-auto" />
@@ -96,7 +96,7 @@ export function Hero() {
         ref={indicatorRef}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="font-mono text-[8px] tracking-[0.25em] uppercase" style={{ color: '#9A5C6D' }}>
+        <span className="font-mono text-[8px] tracking-[0.25em] uppercase" style={{ color: '#B88A9A' }}>
           Listen
         </span>
         <svg width="10" height="18" viewBox="0 0 10 18" fill="none">
