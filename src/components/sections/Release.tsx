@@ -85,7 +85,7 @@ export function Release() {
                 rel="noreferrer noopener"
                 className="font-mono text-[10px] tracking-[0.2em] uppercase px-6 py-3 border btn-soft"
                 style={{ borderColor: '#C4788A', color: '#C4788A' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#080604' }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#000000' }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4788A' }}
               >
                 Listen

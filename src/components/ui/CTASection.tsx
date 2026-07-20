@@ -37,7 +37,7 @@ export function CTASection() {
               href="mailto:demo@manteisrecordings.com"
               className="inline-block font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-4 border btn-soft"
               style={{ borderColor: '#C4788A', color: '#C4788A' }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#080604' }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#000000' }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4788A' }}
             >
               Submit Demo

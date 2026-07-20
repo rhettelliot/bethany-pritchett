@@ -30,7 +30,7 @@ export function Fragments() {
           {fragments.map((f) => (
             <div
               key={f.label}
-              className="frag-cell bg-[#080604] p-6 md:p-10 flex flex-col items-center justify-center text-center"
+              className="frag-cell bg-void p-6 md:p-10 flex flex-col items-center justify-center text-center"
             >
               <div
                 className="font-mono text-4xl md:text-5xl font-bold tracking-[-0.04em]"

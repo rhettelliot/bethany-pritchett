@@ -92,7 +92,7 @@ export function Gatekeeper() {
       role="dialog"
       aria-modal="true"
       aria-label="Welcome to Bethany Pritchett"
-      className="fixed inset-0 z-50 bg-[#080604] flex flex-col items-center justify-center"
+      className="fixed inset-0 z-50 bg-void flex flex-col items-center justify-center"
     >
       {/* Warm ambient glow */}
       <div
@@ -136,7 +136,7 @@ export function Gatekeeper() {
           autoFocus
           className="mt-10 font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-3 border btn-soft"
           style={{ borderColor: 'rgba(196,120,138,0.3)', color: '#C4788A' }}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#080604' }}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#000000' }}
           onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4788A' }}
         >
           Enter
