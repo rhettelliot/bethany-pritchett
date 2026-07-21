@@ -32,25 +32,18 @@ export function Verse() {
         <div className="section-label mb-20">Verse /</div>
 
         {/* Margin line — like reading at a desk */}
-        <div className="relative pl-6 md:pl-10 border-l" style={{ borderColor: 'rgba(196,120,138,0.1)' }}>
+        <div className="relative pl-6 md:pl-10 border-l border-signal/10">
           <div className="space-y-7 md:space-y-9">
             {verses.map((line, i) => (
               <p
                 key={i}
                 className={`verse-line font-display text-2xl md:text-4xl lg:text-5xl leading-[1.15] tracking-[-0.01em] ${
                   i === verses.length - 1
-                    ? 'font-medium italic'
+                    ? 'font-medium italic text-signal-warm'
                     : i === 0
-                      ? 'font-medium'
-                      : ''
+                      ? 'font-medium text-signal'
+                      : 'text-ink-secondary'
                 }`}
-                style={{
-                  color: i === verses.length - 1
-                    ? '#E8B0BC'
-                    : i === 0
-                      ? '#C4788A'
-                      : '#E8DDD0',
-                }}
               >
                 {line}
               </p>

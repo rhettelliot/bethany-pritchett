@@ -5,29 +5,26 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div>
             <h3 className="font-display text-2xl font-medium italic tracking-[-0.02em]">
-              <span style={{ color: '#E8B0BC' }}>Bethany</span>{' '}
-              <span style={{ color: '#D4C5A9' }}>Pritchett</span>
+              <span className="text-signal-warm">Bethany</span>{' '}
+              <span className="text-signal-cream">Pritchett</span>
             </h3>
-            <p className="font-mono text-[9px] tracking-[0.2em] uppercase mt-2" style={{ color: '#B88A9A' }}>
+            <p className="font-mono text-[9px] tracking-[0.2em] uppercase mt-2 text-ink-secondary">
               Vocalist · Synthesist · Poet
             </p>
-            <p className="font-mono text-[9px] tracking-[0.15em] mt-4" style={{ color: '#8B7D70' }}>
+            <p className="font-mono text-[9px] tracking-[0.15em] mt-4 text-ink-tertiary">
               Seattle, WA · Manteis Recordings · MR-003
             </p>
           </div>
 
           <div className="flex flex-col items-start md:items-end gap-3">
-            <span className="font-mono text-[8px] tracking-[0.25em] uppercase mb-1" style={{ color: '#8B7D70' }}>
+            <span className="font-mono text-[8px] tracking-[0.25em] uppercase mb-1 text-ink-tertiary">
               Stream
             </span>
             <a
               href="https://open.spotify.com/artist/bethanypritchett"
               target="_blank"
               rel="noreferrer noopener"
-              className="font-mono text-[10px] tracking-[0.1em] transition-colors duration-300"
-              style={{ color: '#B88A9A' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#C4788A' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#B88A9A' }}
+              className="font-mono text-[10px] tracking-[0.1em] transition-colors duration-300 link-quiet"
             >
               Spotify
             </a>
@@ -35,10 +32,7 @@ export function Footer() {
               href="https://music.apple.com"
               target="_blank"
               rel="noreferrer noopener"
-              className="font-mono text-[10px] tracking-[0.1em] transition-colors duration-300"
-              style={{ color: '#B88A9A' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = '#C4788A' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = '#B88A9A' }}
+              className="font-mono text-[10px] tracking-[0.1em] transition-colors duration-300 link-quiet"
             >
               Apple Music
             </a>
@@ -46,10 +40,10 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-2" style={{ borderTop: '1px solid rgba(196,120,138,0.06)' }}>
-          <p className="font-mono text-[8px] tracking-[0.15em]" style={{ color: '#8B7D70' }}>
+          <p className="font-mono text-[8px] tracking-[0.15em] text-ink-tertiary">
             © {new Date().getFullYear()} Bethany Pritchett. All voices reserved.
           </p>
-          <p className="font-mono text-[8px] tracking-[0.15em]" style={{ color: '#8B7D70' }}>
+          <p className="font-mono text-[8px] tracking-[0.15em] text-ink-tertiary">
             Manteis Recordings
           </p>
         </div>
