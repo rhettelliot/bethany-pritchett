@@ -1,11 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { revealOnEnter } from '@/lib/reveal'
+import { ALBUM } from '@/lib/album'
 
 export function Release() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     const root = sectionRef.current
@@ -27,19 +29,22 @@ export function Release() {
           {/* Cover */}
           <div className="release-cover w-full md:w-1/2">
             <div
-              className="relative aspect-square overflow-hidden"
+              className="relative aspect-square overflow-hidden transition-opacity duration-700"
               style={{
+                opacity: loaded ? 1 : 0,
                 border: '1px solid rgba(196,120,138,0.1)',
-                boxShadow: '0 0 60px rgba(196,120,138,0.06), 0 0 120px rgba(212,197,169,0.03)',
+                boxShadow: '0 0 60px rgba(196,120,138,0.06)',
               }}
             >
               <Image
                 src="/covers/GMGFE.webp"
-                alt="Good Morning Good Fortune Elephant cover art"
+                alt={`${ALBUM.title} cover art`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                priority
+                loading="lazy"
+                onLoad={() => setLoaded(true)}
+                quality={90}
               />
               {/* Warm vignette overlay */}
               <div
@@ -53,51 +58,45 @@ export function Release() {
 
           {/* Info */}
           <div className="release-info flex-1 py-4 md:py-12">
-            <div className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4" style={{ color: '#C4788A' }}>
-              MR-003 · 2024
+            <div className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4 text-signal">
+              {ALBUM.catalog} · {ALBUM.year}
             </div>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-medium italic tracking-[-0.02em] leading-[0.9] mb-1" style={{ color: '#D4C5A9' }}>
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-medium italic tracking-[-0.02em] leading-[0.9] mb-1 text-signal-cream">
               Good Morning
             </h2>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal tracking-[-0.02em] leading-[0.9] mb-1" style={{ color: '#E8B0BC' }}>
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal tracking-[-0.02em] leading-[0.9] mb-1 text-signal-warm">
               Good Fortune
             </h2>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal italic tracking-[-0.02em] leading-[0.9] mb-4" style={{ color: '#D4C5A9' }}>
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal italic tracking-[-0.02em] leading-[0.9] mb-4 text-signal-cream">
               Elephant
             </h2>
-            <p className="font-display text-xl md:text-2xl font-normal mb-6" style={{ color: '#C4788A' }}>
+            <p className="font-display text-xl md:text-2xl font-normal mb-6 text-signal">
               Bethany Pritchett
             </p>
 
             <div className="rose-thread w-12 mb-8" />
 
-            <p className="font-body text-base md:text-lg leading-relaxed mb-10 max-w-lg" style={{ color: '#B0A597' }}>
-              A breathtaking dive into intimacy. Voice and synthesizer woven into 
-              poetic architecture — songs that feel like letters you weren&apos;t supposed 
+            <p className="font-body text-base md:text-lg leading-relaxed mb-10 max-w-lg text-ink-secondary">
+              A breathtaking dive into intimacy. Voice and synthesizer woven into
+              poetic architecture — songs that feel like letters you weren&apos;t supposed
               to read. Alternative songwriting at its most vulnerable and vivid.
             </p>
 
             {/* Streaming */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a
-                href="https://distrokid.com/hyperfollow/bethanypritchett/good-morning-good-fortune-elephant"
+                href={ALBUM.listenUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="font-mono text-[10px] tracking-[0.2em] uppercase px-6 py-3 border btn-soft"
-                style={{ borderColor: '#C4788A', color: '#C4788A' }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4788A'; e.currentTarget.style.color = '#000000' }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4788A' }}
+                className="font-mono text-[10px] tracking-[0.2em] uppercase px-6 py-3 border btn-soft min-h-[44px] flex items-center"
               >
                 Listen
               </a>
               <a
-                href="https://open.spotify.com/artist/bethanypritchett"
+                href={ALBUM.spotifyUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="font-mono text-[10px] tracking-[0.1em] uppercase transition-colors duration-300"
-                style={{ color: '#B88A9A' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#C4788A' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#B88A9A' }}
+                className="font-mono text-[10px] tracking-[0.1em] uppercase transition-colors duration-300 link-quiet min-h-[44px] flex items-center"
               >
                 Spotify →
               </a>
@@ -108,8 +107,8 @@ export function Release() {
               {['Alternative', 'Vocal', 'Synthesist', 'Poetic'].map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1"
-                  style={{ border: '1px solid rgba(196,120,138,0.12)', color: '#B88A9A' }}
+                  className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 text-ink-secondary"
+                  style={{ border: '1px solid rgba(196,120,138,0.12)' }}
                 >
                   {tag}
                 </span>

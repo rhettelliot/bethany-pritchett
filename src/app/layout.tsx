@@ -1,17 +1,12 @@
 import type { Metadata, Viewport } from 'next'
 import '@/styles/globals.css'
-import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
+import { JetBrains_Mono, Space_Grotesk } from 'next/font/google'
 import { ALBUM } from '@/lib/album'
 
-const inter = Inter({
-  subsets: ['latin'],
+const geistSans = localFont({
+  src: './fonts/GeistVF.woff',
   variable: '--font-body',
-  display: 'swap',
-})
-
-const jetbrains = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -19,6 +14,12 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
   weight: ['300', '400', '500', '700'],
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -112,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}>
       <body className="bg-void text-ink antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <script
@@ -125,19 +126,6 @@ export default function RootLayout({
           </div>
         </noscript>
         {children}
-        {/* Safety net: if a scroll-reveal never fires, force content visible */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-  (function() {
-    setTimeout(function() {
-      var els = document.querySelectorAll('main [style*="opacity: 0"], main [style*="opacity:0"]');
-      els.forEach(function(el) { el.style.opacity = '1'; el.style.transform = 'none'; });
-    }, 4000);
-  })();
-`,
-          }}
-        />
       </body>
     </html>
   )
