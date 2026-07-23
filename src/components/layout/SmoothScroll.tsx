@@ -13,6 +13,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     let lenis: Lenis | null = null
     let gsapInstance: typeof import('gsap').default | null = null
+    let tick: ((time: number) => void) | null = null
     let active = true
 
     const init = async () => {
@@ -32,9 +33,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
       lenis.on('scroll', ScrollTrigger.update)
 
-      gsap.ticker.add((time) => {
-        lenis!.raf(time * 1000)
-      })
+      // Keep the exact callback reference so cleanup can remove it — passing
+      // lenis.raf here (as the old code did to ticker.remove) removes nothing,
+      // leaking a ticker that calls raf() on a destroyed Lenis.
+      tick = (time: number) => lenis!.raf(time * 1000)
+      gsap.ticker.add(tick)
 
       gsap.ticker.lagSmoothing(0)
     }
@@ -43,8 +46,9 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     return () => {
       active = false
+      if (tick) gsapInstance?.ticker.remove(tick)
       lenis?.destroy()
-      gsapInstance?.ticker.remove(lenis!.raf as unknown as (time: number) => void)
+      lenisRef.current = null
     }
   }, [reduced])
 

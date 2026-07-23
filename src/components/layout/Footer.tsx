@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="py-16 md:py-24" style={{ borderTop: '1px solid rgba(196,120,138,0.06)' }}>
+    <footer className="py-16 md:py-24 border-t border-signal-hairline">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div>

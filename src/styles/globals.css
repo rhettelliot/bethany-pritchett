@@ -13,6 +13,8 @@
   --signal: #C4788A;
   --signal-dim: rgba(196, 120, 138, 0.12);
   --signal-border: rgba(196, 120, 138, 0.4);
+  --signal-hairline: rgba(196, 120, 138, 0.06);
+  --signal-glow: rgba(196, 120, 138, 0.08);
   --signal-pale: #B88A9A;
   --signal-warm: #D4A8B2;
   --signal-cream: #CDB8A3;
@@ -69,10 +71,28 @@ body {
   color: var(--text-tertiary);
 }
 
+/* Visually hidden, still announced by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Hairline divider */
 .hairline {
   height: 1px;
   background: var(--edge-faint);
+}
+
+/* Signal-tinted hairline border — the recurring warm rule between sections */
+.border-signal-hairline {
+  border-color: var(--signal-hairline);
 }
 
 /* Signal thread — a short solid rose rule */

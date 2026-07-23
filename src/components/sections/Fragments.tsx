@@ -26,10 +26,11 @@ export function Fragments() {
   return (
     <section ref={sectionRef} className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <h2 className="sr-only">By the numbers</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-signal-dim">
           {fragments.map((f) => (
             <div
-              key={f.label}
+              key={f.unit}
               className="frag-cell bg-void-raised p-6 md:p-10 flex flex-col items-center justify-center text-center"
             >
               <div

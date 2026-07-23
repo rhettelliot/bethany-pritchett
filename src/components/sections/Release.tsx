@@ -61,14 +61,10 @@ export function Release() {
             <div className="font-mono text-[10px] tracking-[0.2em] uppercase mb-4 text-signal">
               {ALBUM.catalog} · {ALBUM.year}
             </div>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-medium italic tracking-[-0.02em] leading-[0.9] mb-1 text-signal-cream">
-              Good Morning
-            </h2>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal tracking-[-0.02em] leading-[0.9] mb-1 text-signal-warm">
-              Good Fortune
-            </h2>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-normal italic tracking-[-0.02em] leading-[0.9] mb-4 text-signal-cream">
-              Elephant
+            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-[-0.02em] leading-[0.9] mb-4">
+              <span className="block font-medium italic text-signal-cream">Good Morning</span>
+              <span className="block font-normal text-signal-warm">Good Fortune</span>
+              <span className="block font-normal italic text-signal-cream">Elephant</span>
             </h2>
             <p className="font-display text-xl md:text-2xl font-normal mb-6 text-signal">
               Bethany Pritchett

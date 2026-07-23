@@ -94,7 +94,7 @@ export function Hero() {
         <div
           className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] animate-breathe-soft"
           style={{
-            background: 'radial-gradient(circle, rgba(196,120,138,0.08) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, var(--signal-glow) 0%, transparent 60%)',
           }}
         />
       </div>
@@ -104,12 +104,10 @@ export function Hero() {
       />
 
       <div ref={titleRef} className="relative z-10 text-center px-6 opacity-0">
-        <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-medium italic tracking-[-0.01em] leading-[0.86] text-signal-warm">
-          Bethany
+        <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] tracking-[-0.01em] leading-[0.86]">
+          <span className="block font-medium italic text-signal-warm">Bethany</span>
+          <span className="block font-normal text-signal-cream">Pritchett</span>
         </h1>
-        <h2 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-normal tracking-[-0.01em] leading-[0.86] text-signal-cream">
-          Pritchett
-        </h2>
       </div>
 
       <div ref={subRef} className="relative z-10 mt-5 text-center opacity-0">

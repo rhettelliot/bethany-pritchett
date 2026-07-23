@@ -29,7 +29,7 @@ export function Verse() {
   return (
     <section ref={sectionRef} id="verse" className="py-32 md:py-48">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
-        <div className="section-label mb-20">Verse /</div>
+        <h2 className="section-label mb-20">Verse /</h2>
 
         {/* Margin line — like reading at a desk */}
         <div className="relative pl-6 md:pl-10 border-l border-signal/10">

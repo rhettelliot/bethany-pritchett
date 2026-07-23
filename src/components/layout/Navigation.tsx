@@ -12,7 +12,7 @@ export function Navigation() {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-void/90" style={{ borderBottom: '1px solid rgba(196,120,138,0.06)' }}>
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-void/90 border-b border-signal-hairline">
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
         <a href="#" className="font-display text-lg font-medium italic tracking-[-0.02em] text-signal-warm">
           BP
@@ -52,7 +52,7 @@ export function Navigation() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden px-6 py-6 space-y-4 bg-void" style={{ borderBottom: '1px solid rgba(196,120,138,0.06)' }}>
+        <div className="md:hidden px-6 py-6 space-y-4 bg-void border-b border-signal-hairline">
           {links.map((link) => (
             <a
               key={link.href}
