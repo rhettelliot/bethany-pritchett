@@ -50,10 +50,15 @@ const config: Config = {
           from: { opacity: '0', transform: 'translateY(20px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        'breathe-soft': {
+          '0%, 100%': { opacity: '0.6' },
+          '50%': { opacity: '1' },
+        },
       },
       animation: {
         'fade-in': 'fade-in 1s ease-out forwards',
         'slide-up': 'slide-up 0.7s ease-out forwards',
+        'breathe-soft': 'breathe-soft 4s ease-in-out infinite',
       },
     },
   },

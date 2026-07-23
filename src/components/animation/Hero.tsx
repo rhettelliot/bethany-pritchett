@@ -1,11 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useReducedMotion } from '@/lib/useReducedMotion'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -17,48 +13,75 @@ export function Hero() {
   useEffect(() => {
     if (reduced) return
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.2 })
+    let ctx: { revert: () => void } | null = null
+    let active = true
 
-      tl.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1.4, ease: 'power2.out' }
-      )
+    const init = async () => {
+      const gsap = (await import('gsap')).default
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (!active) return
+      gsap.registerPlugin(ScrollTrigger)
 
-      tl.fromTo(
-        subRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.8, ease: 'power2.out' },
-        '-=0.6'
-      )
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ delay: 0.2 })
 
-      gsap.to(indicatorRef.current, {
-        y: 5,
-        duration: 2.4,
-        ease: 'sine.inOut',
-        repeat: -1,
-        yoyo: true,
-      })
+        tl.fromTo(
+          titleRef.current,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1.4, ease: 'power2.out' }
+        )
 
-      gsap.to(titleRef.current, {
-        y: -50,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.8,
-        },
-      })
-    }, heroRef)
+        tl.fromTo(
+          subRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.8, ease: 'power2.out' },
+          '-=0.6'
+        )
 
-    return () => ctx.revert()
+        gsap.to(indicatorRef.current, {
+          y: 5,
+          duration: 2.4,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+        })
+
+        gsap.to(titleRef.current, {
+          y: -50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.8,
+          },
+        })
+      }, heroRef)
+    }
+
+    init()
+
+    return () => {
+      active = false
+      ctx?.revert()
+    }
   }, [reduced])
 
   useEffect(() => {
     if (reduced) {
-      gsap.set([titleRef.current, subRef.current, indicatorRef.current], { opacity: 1, y: 0 })
+      let active = true
+
+      const init = async () => {
+        const gsap = (await import('gsap')).default
+        if (!active) return
+        gsap.set([titleRef.current, subRef.current, indicatorRef.current], { opacity: 1, y: 0 })
+      }
+
+      init()
+
+      return () => {
+        active = false
+      }
     }
   }, [reduced])
 
@@ -67,7 +90,6 @@ export function Hero() {
       ref={heroRef}
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Single-signal ambient glow — the warmth of morning, not decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] animate-breathe-soft"
@@ -77,12 +99,10 @@ export function Hero() {
         />
       </div>
 
-      {/* Faint vertical line — like a margin rule */}
       <div
         className="absolute left-[8%] md:left-[12%] top-0 bottom-0 w-px pointer-events-none opacity-[0.04] bg-signal"
       />
 
-      {/* Title */}
       <div ref={titleRef} className="relative z-10 text-center px-6 opacity-0">
         <h1 className="font-display text-6xl md:text-[8rem] lg:text-[10rem] font-medium italic tracking-[-0.01em] leading-[0.86] text-signal-warm">
           Bethany
@@ -92,7 +112,6 @@ export function Hero() {
         </h2>
       </div>
 
-      {/* Subtitle */}
       <div ref={subRef} className="relative z-10 mt-5 text-center opacity-0">
         <p className="font-mono text-[9px] tracking-[0.4em] uppercase text-ink-secondary">
           Vocalist · Synthesist · Poet · MR-003
@@ -100,7 +119,6 @@ export function Hero() {
         <div className="mt-4 rose-thread w-16 mx-auto" />
       </div>
 
-      {/* Scroll */}
       <div
         ref={indicatorRef}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"

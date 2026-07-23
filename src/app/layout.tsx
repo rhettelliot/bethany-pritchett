@@ -10,12 +10,6 @@ const geistSans = localFont({
   display: 'swap',
 })
 
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-mono',
-  display: 'swap',
-})
-
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
@@ -119,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${geistSans.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}>
       <body className="bg-void text-ink antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <script

@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
 import { useReducedMotion } from '@/lib/useReducedMotion'
 
 export function Gatekeeper() {
@@ -17,6 +16,7 @@ export function Gatekeeper() {
   const titleRef = useRef<HTMLDivElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const btnRef = useRef<HTMLButtonElement>(null)
+  const gsapRef = useRef<typeof import('gsap').default | null>(null)
 
   const doEnter = useCallback(() => {
     sessionStorage.setItem('bp-entered', 'true')
@@ -25,6 +25,8 @@ export function Gatekeeper() {
       setEntered(true)
       return
     }
+    const gsap = gsapRef.current
+    if (!gsap) return
     gsap.to(containerRef.current, {
       opacity: 0,
       scale: 1.02,
@@ -49,43 +51,70 @@ export function Gatekeeper() {
   useEffect(() => {
     if (entered || reduced) return
 
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 })
+    let ctx: { revert: () => void } | null = null
+    let active = true
 
-      tl.fromTo(
-        lineRef.current,
-        { scaleX: 0 },
-        { scaleX: 1, duration: 1.8, ease: 'power2.inOut' }
-      )
+    const init = async () => {
+      const gsap = (await import('gsap')).default
+      if (!active) return
+      gsapRef.current = gsap
 
-      tl.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' },
-        '-=1'
-      )
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ delay: 0.3 })
 
-      tl.fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
-        '-=0.5'
-      )
+        tl.fromTo(
+          lineRef.current,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 1.8, ease: 'power2.inOut' }
+        )
 
-      tl.fromTo(
-        btnRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-        '-=0.2'
-      )
-    }, containerRef)
+        tl.fromTo(
+          titleRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1.2, ease: 'power2.out' },
+          '-=1'
+        )
 
-    return () => ctx.revert()
+        tl.fromTo(
+          subtitleRef.current,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+          '-=0.5'
+        )
+
+        tl.fromTo(
+          btnRef.current,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+          '-=0.2'
+        )
+      }, containerRef)
+    }
+
+    init()
+
+    return () => {
+      active = false
+      ctx?.revert()
+    }
   }, [entered, reduced])
 
   useEffect(() => {
     if (reduced && !entered) {
-      gsap.set([lineRef.current, titleRef.current, subtitleRef.current, btnRef.current], { opacity: 1, y: 0, scaleX: 1 })
+      let active = true
+
+      const init = async () => {
+        const gsap = (await import('gsap')).default
+        if (!active) return
+        gsapRef.current = gsap
+        gsap.set([lineRef.current, titleRef.current, subtitleRef.current, btnRef.current], { opacity: 1, y: 0, scaleX: 1 })
+      }
+
+      init()
+
+      return () => {
+        active = false
+      }
     }
   }, [reduced, entered])
 
@@ -100,7 +129,6 @@ export function Gatekeeper() {
       aria-label="Welcome to Bethany Pritchett"
       className="fixed inset-0 z-50 bg-void flex flex-col items-center justify-center"
     >
-      {/* Ambient signal glow — represents the warmth of morning light; single-signal with subtle edge diffusion */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -108,7 +136,6 @@ export function Gatekeeper() {
         }}
       />
 
-      {/* Ink line */}
       <div
         ref={lineRef}
         className="absolute top-1/2 left-0 right-0 h-px origin-left"
@@ -117,7 +144,6 @@ export function Gatekeeper() {
         }}
       />
 
-      {/* Content */}
       <div className="relative z-10 text-center px-6">
         <div ref={titleRef} className="opacity-0">
           <h2 className="font-display text-5xl md:text-7xl lg:text-[8.5rem] font-medium italic tracking-[-0.01em] leading-[0.88] text-signal-warm">
@@ -145,7 +171,6 @@ export function Gatekeeper() {
         </button>
       </div>
 
-      {/* Corner annotations — like margins of a handwritten letter */}
       <div className="absolute top-6 left-6 font-mono text-[9px] tracking-[0.15em] text-ink-tertiary">
         MR-003
       </div>
