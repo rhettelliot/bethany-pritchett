@@ -169,7 +169,7 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 grid-lines opacity-[0.35] pointer-events-none" />
 

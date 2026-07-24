@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function NotFound() {
   return (
     <main
-      className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-void"
+      className="min-h-[100dvh] flex flex-col items-center justify-center text-center px-6 bg-void"
     >
       <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-signal">
         404 — A letter never sent
