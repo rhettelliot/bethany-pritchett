@@ -6,6 +6,7 @@ import { Navigation } from '@/components/layout/Navigation'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import { Hero } from '@/components/animation/Hero'
 import { Fragments } from '@/components/sections/Fragments'
+import { Bio } from '@/components/sections/Bio'
 import { Release } from '@/components/sections/Release'
 import { Verse } from '@/components/sections/Verse'
 import { CTASection } from '@/components/ui/CTASection'
@@ -40,6 +41,7 @@ export default function Home() {
           <main id="main-content" tabIndex={-1}>
             <Hero />
             <Fragments />
+            <Bio />
             <Release />
             <Verse />
             <CTASection />

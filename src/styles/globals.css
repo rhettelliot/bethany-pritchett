@@ -9,30 +9,27 @@
   --void-elevated: #141414;
   --void-float: #1C1C1C;
 
-  /* The Signal — dusty rose. Intimate, personal. Used sparingly. */
-  --signal: #C4788A;
-  --signal-soft: #B88A9A;    /* lighter rose — secondary text, hover states */
-  --signal-bright: #E8B0BC;  /* lightest rose — wordmark, highlights */
-  --signal-dim: rgba(196, 120, 138, 0.12);
-  --signal-border: rgba(196, 120, 138, 0.4);
-  --signal-pale: #B88A9A;
-  --signal-warm: #D4A8B2;
-  --signal-cream: #CDB8A3;
+  /* The Signal — dusty rose #B88A9A. Intimate, personal. */
+  --signal: #B88A9A;
+  --signal-dim: rgba(184, 138, 154, 0.10);
+  --signal-border: rgba(184, 138, 154, 0.32);
+  --signal-hairline: rgba(184, 138, 154, 0.07);
+  --signal-glow: rgba(184, 138, 154, 0.07);
+  --signal-pale: #C49DA8;
+  --signal-warm: #D1A9B4;
+  --signal-cream: #F5E6D3;
 
-  /* Typography */
-  --text-primary: #FFFFFF;
-  --text-secondary: #999999;
-  --text-tertiary: #767676;
-  --text-ghost: rgba(255, 255, 255, 0.18);
-
-  /* Warm neutral — muted brown for labels and metadata */
-  --neutral-warm: #8B7D70;
+  /* Typography — cream-forward, intimate */
+  --text-primary: #F5E6D3;
+  --text-secondary: #A89E94;
+  --text-tertiary: #6E6660;
+  --text-ghost: rgba(245, 230, 211, 0.16);
 
   /* The Edge */
-  --edge-ghost: rgba(255, 255, 255, 0.04);
-  --edge-faint: rgba(255, 255, 255, 0.08);
-  --edge-subtle: rgba(255, 255, 255, 0.12);
-  --edge-clear: rgba(255, 255, 255, 0.22);
+  --edge-ghost: rgba(245, 230, 211, 0.04);
+  --edge-faint: rgba(245, 230, 211, 0.07);
+  --edge-subtle: rgba(245, 230, 211, 0.12);
+  --edge-clear: rgba(245, 230, 211, 0.20);
 }
 
 * {
@@ -74,10 +71,28 @@ body {
   color: var(--text-tertiary);
 }
 
+/* Visually hidden, still announced by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Hairline divider */
 .hairline {
   height: 1px;
   background: var(--edge-faint);
+}
+
+/* Signal-tinted hairline border */
+.border-signal-hairline {
+  border-color: var(--signal-hairline);
 }
 
 /* Signal thread — a short solid rose rule */
@@ -133,6 +148,67 @@ body {
   background: var(--edge-faint);
 }
 
+/* Gallery spacing — huge rhythmic gaps */
+.gallery-section {
+  padding-top: clamp(8rem, 18vh, 16rem);
+  padding-bottom: clamp(8rem, 18vh, 16rem);
+}
+
+/* Circular mask for imagery */
+.circle-mask {
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* Soft circular stamp texture */
+.stamp {
+  border: 1px solid var(--signal-border);
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, var(--signal-dim), transparent 70%);
+}
+
+/* Sheet music parallel lines pattern */
+.sheet-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 18px,
+    var(--signal-hairline) 18px,
+    var(--signal-hairline) 19px
+  );
+}
+
+/* Topographic contour lines — soft dusty rose */
+.topo-lines {
+  background-image: radial-gradient(
+    ellipse 120% 100% at 50% 55%,
+    transparent 0%,
+    transparent 39%,
+    var(--signal-hairline) 40%,
+    var(--signal-hairline) 41%,
+    transparent 42%,
+    transparent 57%,
+    var(--signal-hairline) 58%,
+    var(--signal-hairline) 59%,
+    transparent 60%,
+    transparent 72%,
+    var(--signal-hairline) 73%,
+    var(--signal-hairline) 74%,
+    transparent 75%,
+    transparent 85%,
+    var(--signal-hairline) 86%,
+    var(--signal-hairline) 87%,
+    transparent 88%
+  );
+}
+
+/* Visible grid — airy gallery density */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, var(--signal-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--signal-hairline) 1px, transparent 1px);
+  background-size: clamp(60px, 8vw, 140px) clamp(60px, 8vw, 140px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -150,7 +226,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Ensure interactive elements show a strong keyboard signal */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--signal);
@@ -162,7 +237,7 @@ section[id] {
   scroll-margin-top: 88px;
 }
 
-/* Skip link — visually hidden until keyboard focus */
+/* Skip link */
 .skip-link {
   position: absolute;
   left: -9999px;

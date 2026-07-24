@@ -24,16 +24,22 @@ export function Fragments() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24">
+    <section ref={sectionRef} className="gallery-section">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <h2 className="sr-only">By the numbers</h2>
+        <div className="section-label mb-16">Signal /</div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-signal-dim">
-          {fragments.map((f) => (
+          {fragments.map((f, i) => (
             <div
-              key={f.label}
-              className="frag-cell bg-void-raised p-6 md:p-10 flex flex-col items-center justify-center text-center"
+              key={f.unit}
+              className="frag-cell bg-void-raised p-8 md:p-16 flex flex-col items-center justify-center text-center relative overflow-hidden"
+              style={{ transitionDelay: `${i * 40}ms` }}
             >
               <div
-                className={`font-mono text-4xl md:text-5xl font-bold tracking-[-0.04em] ${f.color}`}
+                className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none sheet-lines"
+              />
+              <div
+                className={`font-mono text-5xl md:text-6xl font-bold tracking-[-0.04em] ${f.color}`}
               >
                 {f.label}
               </div>
