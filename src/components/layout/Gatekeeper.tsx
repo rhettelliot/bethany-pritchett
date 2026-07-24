@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useReducedMotion } from '@/lib/useReducedMotion'
+import { ALBUM } from '@/lib/album'
 
 export function Gatekeeper() {
   const [entered, setEntered] = useState(() => {
@@ -38,11 +39,8 @@ export function Gatekeeper() {
 
   useEffect(() => {
     if (entered) return
-
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        doEnter()
-      }
+      if (e.key === 'Escape') doEnter()
     }
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
@@ -50,7 +48,6 @@ export function Gatekeeper() {
 
   useEffect(() => {
     if (entered || reduced) return
-
     let ctx: { revert: () => void } | null = null
     let active = true
 
@@ -102,19 +99,14 @@ export function Gatekeeper() {
   useEffect(() => {
     if (reduced && !entered) {
       let active = true
-
       const init = async () => {
         const gsap = (await import('gsap')).default
         if (!active) return
         gsapRef.current = gsap
         gsap.set([lineRef.current, titleRef.current, subtitleRef.current, btnRef.current], { opacity: 1, y: 0, scaleX: 1 })
       }
-
       init()
-
-      return () => {
-        active = false
-      }
+      return () => { active = false }
     }
   }, [reduced, entered])
 
@@ -130,10 +122,7 @@ export function Gatekeeper() {
       className="fixed inset-0 z-50 bg-void flex flex-col items-center justify-center"
     >
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 45%, rgba(184,138,154,0.06) 0%, transparent 60%)',
-        }}
+        className="absolute inset-0 pointer-events-none topo-lines opacity-[0.35]"
       />
 
       <div
@@ -172,7 +161,7 @@ export function Gatekeeper() {
       </div>
 
       <div className="absolute top-6 left-6 font-mono text-[9px] tracking-[0.15em] text-ink-tertiary">
-        MR-003
+        {ALBUM.catalog}
       </div>
       <div className="absolute top-6 right-6 font-display text-lg italic text-signal/30" aria-hidden="true">
         ♪

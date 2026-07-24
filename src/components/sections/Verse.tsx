@@ -27,12 +27,14 @@ export function Verse() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="verse" className="py-48 md:py-72">
+    <section ref={sectionRef} id="verse" className="gallery-section relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-signal-hairline" />
+
       <div className="max-w-5xl mx-auto px-6 md:px-12">
         <h2 className="section-label mb-24">Verse /</h2>
 
         <div className="relative pl-6 md:pl-10 border-l border-signal/10">
-          <div className="space-y-10 md:space-y-14">
+          <div className="space-y-12 md:space-y-18">
             {verses.map((line, i) => (
               <p
                 key={i}
@@ -52,6 +54,8 @@ export function Verse() {
 
         <div className="mt-20 rose-thread w-20" />
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-signal-hairline" />
     </section>
   )
 }

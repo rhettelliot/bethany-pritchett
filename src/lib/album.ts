@@ -1,7 +1,7 @@
 export const ALBUM = {
   title: 'Good Morning, Good Fortune Elephant',
   artist: 'Bethany Pritchett',
-  catalog: 'MR-003',
+  catalog: 'MR-009',
   year: '2025',
   label: 'Manteis Recordings',
   labelUrl: 'https://manteisrecordings.com',
