@@ -125,7 +125,7 @@ export function Hero() {
           Listen
         </span>
         <svg width="10" height="18" viewBox="0 0 10 18" fill="none" aria-hidden="true">
-          <path d="M5 3 L5 13 M2 10 L5 13 L8 10" stroke="#C4788A" strokeWidth="1" opacity="0.5" />
+          <path d="M5 3 L5 13 M2 10 L5 13 L8 10" stroke="#B88A9A" strokeWidth="1" opacity="0.5" />
         </svg>
       </div>
     </section>

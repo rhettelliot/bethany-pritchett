@@ -90,7 +90,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-2" style={{ borderTop: '1px solid rgba(196,120,138,0.06)' }}>
+        <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-2" style={{ borderTop: '1px solid rgba(184,138,154,0.07)' }}>
           <p className="font-mono text-[8px] tracking-[0.15em] text-ink-tertiary">
             © {new Date().getFullYear()} Bethany Pritchett. All voices reserved.
           </p>

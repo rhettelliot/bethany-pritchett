@@ -132,7 +132,7 @@ export function Gatekeeper() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 45%, rgba(196,120,138,0.06) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 50% 45%, rgba(184,138,154,0.06) 0%, transparent 60%)',
         }}
       />
 
@@ -140,7 +140,7 @@ export function Gatekeeper() {
         ref={lineRef}
         className="absolute top-1/2 left-0 right-0 h-px origin-left"
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(196,120,138,0.6), rgba(196,120,138,0.3), rgba(196,120,138,0.6), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(184,138,154,0.6), rgba(184,138,154,0.3), rgba(184,138,154,0.6), transparent)',
         }}
       />
 

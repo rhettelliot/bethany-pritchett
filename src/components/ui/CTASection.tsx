@@ -17,22 +17,22 @@ export function CTASection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-32 md:py-48">
+    <section ref={sectionRef} className="py-48 md:py-72">
       <div className="max-w-4xl mx-auto px-6 md:px-12 text-center">
         <div className="cta-content">
           {/* Musical notation symbol */}
-          <div className="font-display text-3xl italic mb-6 text-signal/40" aria-hidden="true">
+          <div className="font-display text-3xl italic mb-8 text-signal/40" aria-hidden="true">
             ♫
           </div>
 
-          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium italic tracking-[-0.02em] leading-[1.05] text-signal-warm">
+          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-medium italic tracking-[-0.02em] leading-[1.1] text-signal-warm">
             Bring your voice to the room.
           </h2>
-          <p className="font-mono text-[10px] tracking-[0.2em] uppercase mt-4 text-ink-secondary">
+          <p className="font-mono text-[10px] tracking-[0.2em] uppercase mt-5 mb-12 text-ink-secondary">
             Manteis Recordings — accepting demos from artists with something to say
           </p>
 
-          <div className="mt-10">
+          <div>
             <a
               href="mailto:demo@manteisrecordings.com"
               className="inline-block font-mono text-[10px] tracking-[0.25em] uppercase px-8 py-4 border btn-soft min-h-[44px]"

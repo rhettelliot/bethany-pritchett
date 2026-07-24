@@ -7,7 +7,9 @@ import { ALBUM } from '@/lib/album'
 
 export function Release() {
   const sectionRef = useRef<HTMLElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
   const [loaded, setLoaded] = useState(false)
+  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
     const root = sectionRef.current
@@ -20,20 +22,87 @@ export function Release() {
     return () => disposers.forEach((d) => d())
   }, [])
 
-  return (
-    <section ref={sectionRef} id="release" className="py-32 md:py-48">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="section-label mb-20">Release /</div>
+  // Parallax tilt on hover
+  useEffect(() => {
+    if (reduced || !cardRef.current) return
 
-        <div className="flex flex-col md:flex-row gap-10 md:gap-20 items-start">
-          {/* Cover */}
+    const card = cardRef.current
+    let rafId: number | null = null
+    let targetRotateX = 0
+    let targetRotateY = 0
+    let currentRotateX = 0
+    let currentRotateY = 0
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+
+    const animate = () => {
+      currentRotateX = lerp(currentRotateX, targetRotateX, 0.08)
+      currentRotateY = lerp(currentRotateY, targetRotateY, 0.08)
+
+      const clampedX = Math.round(currentRotateX * 100) / 100
+      const clampedY = Math.round(currentRotateY * 100) / 100
+
+      card.style.transform = `perspective(1200px) rotateX(${-clampedX}deg) rotateY(${clampedY}deg)`
+
+      if (
+        Math.abs(targetRotateX - currentRotateX) > 0.01 ||
+        Math.abs(targetRotateY - currentRotateY) > 0.01
+      ) {
+        rafId = requestAnimationFrame(animate)
+      } else {
+        rafId = null
+      }
+    }
+
+    const onMove = (e: MouseEvent) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const cx = rect.width / 2
+      const cy = rect.height / 2
+
+      // Max tilt in degrees
+      targetRotateY = ((x - cx) / cx) * 5
+      targetRotateX = ((y - cy) / cy) * 5
+
+      if (rafId === null) {
+        rafId = requestAnimationFrame(animate)
+      }
+    }
+
+    const onLeave = () => {
+      targetRotateX = 0
+      targetRotateY = 0
+      if (rafId === null) {
+        rafId = requestAnimationFrame(animate)
+      }
+    }
+
+    card.addEventListener('mousemove', onMove)
+    card.addEventListener('mouseleave', onLeave)
+
+    return () => {
+      card.removeEventListener('mousemove', onMove)
+      card.removeEventListener('mouseleave', onLeave)
+      if (rafId !== null) cancelAnimationFrame(rafId)
+    }
+  }, [reduced])
+
+  return (
+    <section ref={sectionRef} id="release" className="py-48 md:py-72">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="section-label mb-24">Release /</div>
+
+        <div className="flex flex-col md:flex-row gap-12 md:gap-28 items-start">
+          {/* Cover with parallax tilt */}
           <div className="release-cover w-full md:w-1/2">
             <div
-              className="relative aspect-square overflow-hidden transition-opacity duration-700"
+              ref={cardRef}
+              className="relative aspect-square overflow-hidden transition-all duration-200 ease-out will-change-transform"
               style={{
                 opacity: loaded ? 1 : 0,
-                border: '1px solid rgba(196,120,138,0.1)',
-                boxShadow: '0 0 60px rgba(196,120,138,0.06)',
+                border: '1px solid rgba(184,138,154,0.12)',
+                boxShadow: '0 0 80px rgba(184,138,154,0.07), 0 30px 60px rgba(0,0,0,0.4)',
               }}
             >
               <Image
@@ -50,7 +119,7 @@ export function Release() {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse at 20% 20%, rgba(196,120,138,0.06) 0%, transparent 50%)',
+                  background: 'radial-gradient(ellipse at 20% 20%, rgba(184,138,154,0.08) 0%, transparent 50%)',
                 }}
               />
             </div>
@@ -72,7 +141,7 @@ export function Release() {
 
             <div className="rose-thread w-12 mb-8" />
 
-            <p className="font-body text-base md:text-lg leading-relaxed mb-10 max-w-lg text-ink-secondary">
+            <p className="font-body text-base md:text-lg leading-[1.85] mb-10 max-w-[55ch] text-ink-secondary">
               A breathtaking dive into intimacy. Voice and synthesizer woven into
               poetic architecture — songs that feel like letters you weren&apos;t supposed
               to read. Alternative songwriting at its most vulnerable and vivid.
@@ -104,7 +173,7 @@ export function Release() {
                 <span
                   key={tag}
                   className="font-mono text-[9px] tracking-[0.15em] uppercase px-3 py-1 text-ink-secondary"
-                  style={{ border: '1px solid rgba(196,120,138,0.12)' }}
+                  style={{ border: '1px solid rgba(184,138,154,0.14)' }}
                 >
                   {tag}
                 </span>
@@ -114,7 +183,7 @@ export function Release() {
         </div>
       </div>
 
-      <div className="divider-ink max-w-5xl mx-auto mt-32" />
+      <div className="divider-ink max-w-5xl mx-auto mt-40" />
     </section>
   )
 }

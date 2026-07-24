@@ -27,17 +27,16 @@ export function Verse() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="verse" className="py-32 md:py-48">
+    <section ref={sectionRef} id="verse" className="py-48 md:py-72">
       <div className="max-w-5xl mx-auto px-6 md:px-12">
-        <h2 className="section-label mb-20">Verse /</h2>
+        <h2 className="section-label mb-24">Verse /</h2>
 
-        {/* Margin line — like reading at a desk */}
         <div className="relative pl-6 md:pl-10 border-l border-signal/10">
-          <div className="space-y-7 md:space-y-9">
+          <div className="space-y-10 md:space-y-14">
             {verses.map((line, i) => (
               <p
                 key={i}
-                className={`verse-line font-display text-2xl md:text-4xl lg:text-5xl leading-[1.15] tracking-[-0.01em] ${
+                className={`verse-line font-display text-2xl md:text-4xl lg:text-5xl leading-[1.25] tracking-[-0.01em] ${
                   i === verses.length - 1
                     ? 'font-medium italic text-signal-warm'
                     : i === 0
@@ -51,7 +50,7 @@ export function Verse() {
           </div>
         </div>
 
-        <div className="mt-16 rose-thread w-20" />
+        <div className="mt-20 rose-thread w-20" />
       </div>
     </section>
   )
